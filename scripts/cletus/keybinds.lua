@@ -208,7 +208,7 @@ local function XPUZV_fake_script() -- frame.keybind
 	-- Settings
 	
 	bind = "v" -- has to be lowercase
-	bind2 = "b"
+	bind2 = "r"
 	
 	-- Script
 	
