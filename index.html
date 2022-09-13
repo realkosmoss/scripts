@@ -1,35 +1,117 @@
-
 <!doctype html>
-<html dir="ltr" lang="sv">
-  <head>
-    <meta charset="utf-8">
-    <title>Ny flik</title>
-    <style>
-      body {
-        background: #353535;
-        margin: 0;
-      }
+<html>
+<head>
+<style>
+#header h1{
+    margin:0px;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
 
-      #backgroundImage {
-        border: none;
-        height: 100%;
-        pointer-events: none;
-        position: fixed;
-        top: 0;
-        visibility: hidden;
-        width: 100%;
-      }
+li {
+    float: left;
+}
 
-      [show-background-image] #backgroundImage {
-        visibility: visible;
-      }
-    </style>
-  </head>
-  <body>
-    <iframe id="backgroundImage" src="chrome-untrusted://new-tab-page/custom_background_image?url=https%3A%2F%2Flh5.googleusercontent.com%2Fproxy%2FE60bugMrz3Jw0Ty3vD1HqfrrabnAQGlHzIJjRadV1kDS_XSE0AtWuMnjW9VPvq1YeyPJK13gZw63TQYvh2RlaZq_aQm5xskpsgWW1l67gg3mkYaZr07BQqMV47onKA%3Dw3840-h2160-p-k-no-nd-mv"></iframe>
-    <ntp-app></ntp-app>
-    <script type="module" src="new_tab_page.js"></script>
-    <link rel="stylesheet" href="chrome://resources/css/text_defaults_md.css">
-    <link rel="stylesheet" href="shared_vars.css">
-  </body>
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+background-color:#4CAF50;
+}
+
+body {
+	background-color: #E3E3E3;
+}
+body,td,th {
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+	font-size: 18px;
+}
+</style>
+<meta charset="utf-8">
+<title>CPCBH | Home</title>
+
+</head>
+
+<body>
+<style>
+body{
+    margin:0;
+}
+</style>
+<ul>
+  <li><a class="active" href="index.html">Home</a></li>
+  <li><a href="Q&amp;A.html">Q & A</a></li>
+  <li><a href="gallery.html">Gallery</a></li>
+  <li><a href="premades.html">Premade Systems</a></li>
+</ul>
+<style>
+img {
+    max-width: 100%;
+    height: auto;
+    width: 100%; /* ie8 */
+}
+</style>
+<img src="img/WCPC1.jpg" width="1920" height="1080" alt=""/>
+
+<center>
+<h2> A statement from our CEO </h2>
+<table width="700" border="0">
+  <tbody>
+    <tr>
+      <td>First and foremost I would like to welcome you to Custom PC Builders hub! On this site we will probably refer to ourselves as CPCBH. Doing do is much easier than typing out our name all of the time. <br>
+<br>
+We are only just starting this website so there will be more content in the future but for now we have a detailed Q&A, A Gallery showing off some amazing custom PCs and some premade systems for sale.<br>
+<br>
+Thanks for reading! Now go explore out site!<br>
+-Lachie</td>
+    </tr>
+  </tbody>
+</table><br>
+<br>
+
+</center>
+
+<style>
+	#footer { height: 240px; }
+</style>
+
+<div id="footer" style="background:#9E9E9E">
+
+<center>
+
+<table width="800" border="0">
+  <tbody>
+    <tr>
+      <td>  <p>Created by: Lachie Bowtell</p>
+            <p>Contact information: <a href="mailto:lachlanbowtell@gmail.com">Lachlanbowtell@gmail.com</a>.</p>
+  </td>
+      <td>
+      <ol>
+          <li><a href="index.html">Home</a></li><br/>
+          <li><a href="Q&amp;A.html">Q&amp;A</a></li><br/>
+          <li><a href="Gallery.html">Gallery</a></li><br/>
+          <li><a href="Premades.html">Premade systems</a></li><br/>
+          </ol>
+          </td>
+    </tr>
+  </tbody>
+</table>
+</center>
+</div>
+
+</body>
 </html>
