@@ -1,4 +1,3 @@
-<p>
 -- made by kosmos
 
 local CLETUSFUCKER = Instance.new("ScreenGui")
@@ -295,5 +294,3 @@ local function CQFOI_fake_script() -- openbutton.LocalScript
 	end)
 end
 coroutine.wrap(CQFOI_fake_script)()
-
-</p>
