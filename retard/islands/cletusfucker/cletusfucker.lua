@@ -10,7 +10,7 @@ local pumpkin = Instance.new("TextButton")
 
 CLETUSFUCKER.Name = "CLETUS FUCKER"
 CLETUSFUCKER.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-CLETUSFUCKER.Enabled = false
+CLETUSFUCKER.Enabled = true
 
 frame.Name = "frame"
 frame.Parent = CLETUSFUCKER
