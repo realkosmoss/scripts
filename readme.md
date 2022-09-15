@@ -1,5 +1,5 @@
-loadstring(game:HttpGet(('https://raw.githubusercontent.com/realkosmoss/websot/main/retard/islands/cletus.lua'),true))() 
+loadstring(game:HttpGet(('https://kosmos-scripts.000webhostapp.com/pub/cletusfucker.lua')))() 
 -- cletus fucker
 
-loadstring(game:HttpGet(('https://raw.githubusercontent.com/realkosmoss/websot/main/retard/islands/cf.lua'),true))()
+loadstring(game:HttpGet(('https://kosmos-scripts.000webhostapp.com/pub/cf.lua'),true))()
 -- cf only keybinds
