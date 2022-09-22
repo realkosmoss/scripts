@@ -6,3 +6,6 @@ loadstring(game:HttpGet(('https://kosmos-scripts.000webhostapp.com/pub/cf.lua'))
 
 loadstring(game:HttpGet(('https://kosmos-scripts.000webhostapp.com/pub/teleport.lua')))()
 -- Lt2 teleport :D
+
+loadstring(game:HttpGet(('https://kosmos-scripts.000webhostapp.com/pub/temphub.lua')))()
+--hob
