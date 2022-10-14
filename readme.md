@@ -13,3 +13,6 @@ loadstring(game:HttpGet(('https://kosmos-scripts.000webhostapp.com/pub/temphub.l
 
 loadstring(game:HttpGet(('https://kosmos-scripts.000webhostapp.com/pub/lomberticoon.lua')))()
 --lumber unsecure hub 
+
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/Slide%20Into%20Rdite%20autofarm.lua')))()
+Slide Into Rdite Autofarm
