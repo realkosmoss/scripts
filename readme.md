@@ -16,3 +16,7 @@ loadstring(game:HttpGet(('https://kosmos-scripts.000webhostapp.com/pub/lombertic
 
 loadstring(game:HttpGet(('https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/Slide%20Into%20Rdite%20autofarm.lua')))()
 Slide Into Rdite Autofarm
+
+
+Sled Simulator Autofarm -- Very ass lol
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/SledSimulatorAutoFarm.lua')))()
