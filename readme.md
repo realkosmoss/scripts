@@ -1,3 +1,5 @@
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/realkosmoss/scripts/main/AutoLauncher.lua')))() 
+
 loadstring(game:HttpGet(('https://kosmos-scripts.000webhostapp.com/pub/cletusfucker.lua')))() 
 -- cletus fucker
 
