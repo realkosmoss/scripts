@@ -1,0 +1,92 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Kosmos Script Hub", "DarkTheme")
+local Tab = Window:NewTab("Lemonade")
+local Section = Tab:NewSection("Lemonade")
+Section:NewButton("Lemonade", "remote", function()
+local args = {
+    [1] = workspace.Plots["6"].Objects.Blender1,
+    [2] = true
+}
+game:GetService("ReplicatedStorage").Communication.UseMachine:FireServer(unpack(args))
+end)
+
+Section:NewButton("Clears Item", "Trash Remote", function()
+    game:GetService("ReplicatedStorage").Communication.UseTrash:FireServer()
+end)
+
+local Tab = Window:NewTab("Hotdog")
+local Section = Tab:NewSection("2")
+Section:NewButton("Give Hotdog", "Gives Hotdog", function()
+    local args = {
+    [1] = workspace.Plots["4"].Objects.Grill1,
+    [2] = true
+}
+
+game:GetService("ReplicatedStorage").Communication.UseMachine:FireServer(unpack(args))
+end)
+Section:NewButton("Give Drink", "Gives Drink", function()
+    local args = {
+    [1] = workspace.Plots["4"].Objects.SodaMachine1,
+    [2] = true
+}
+
+game:GetService("ReplicatedStorage").Communication.UseMachine:FireServer(unpack(args))
+end)
+Section:NewButton("Clears Item", "Trash Remote", function()
+    game:GetService("ReplicatedStorage").Communication.UseTrash:FireServer()
+end)
+
+local Tab = Window:NewTab("Ice Cream")
+local Section = Tab:NewSection("2")
+Section:NewButton("Ice Cream", "Remote", function()
+local args = {
+    [1] = workspace.Plots["4"].Objects.SoftServeMachine1,
+    [2] = true
+}
+game:GetService("ReplicatedStorage").Communication.UseMachine:FireServer(unpack(args))
+end)
+Section:NewButton("Ice Cream Bar", "remote", function()
+    local args = {
+    [1] = workspace.Plots["4"].Objects.Freezer1,
+    [2] = true
+}
+game:GetService("ReplicatedStorage").Communication.UseMachine:FireServer(unpack(args))
+end)
+Section:NewButton("Sundae", "remote", function()
+local args = {
+    [1] = workspace.Plots["4"].Objects.Bar1,
+    [2] = true
+}
+game:GetService("ReplicatedStorage").Communication.UseMachine:FireServer(unpack(args))
+end)
+Section:NewButton("Clears Item", "Trash Remote", function()
+    game:GetService("ReplicatedStorage").Communication.UseTrash:FireServer()
+end)
+
+local Tab = Window:NewTab("Coffee")
+local Section = Tab:NewSection("Coffee")
+Section:NewButton("Coffee", "Remote", function()
+    local args = {
+    [1] = workspace.Plots["4"].Objects.CoffeeMaker1,
+    [2] = true
+}
+game:GetService("ReplicatedStorage").Communication.UseMachine:FireServer(unpack(args))
+end)
+Section:NewButton("Donut", "Remote", function()
+    local args = {
+    [1] = workspace.Plots["4"].Objects.DonutDisplay1,
+    [2] = true
+}
+game:GetService("ReplicatedStorage").Communication.UseMachine:FireServer(unpack(args))
+end)
+
+Section:NewButton("Clears Item", "Trash Remote", function()
+    game:GetService("ReplicatedStorage").Communication.UseTrash:FireServer()
+end)
+
+
+local Tab = Window:NewTab("Settings")
+local Section = Tab:NewSection("Setting")
+Section:NewKeybind("Toggle UI", "yes", Enum.KeyCode.RightControl, function()
+    Library:ToggleUI()
+end)
