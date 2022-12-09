@@ -20,3 +20,6 @@ Slide Into Rdite Autofarm
 
 Sled Simulator Autofarm -- Very ass lol
 loadstring(game:HttpGet(('https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/SledSimulatorAutoFarm.lua')))()
+
+Busy Business
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/BusyBusinessNotDone')))()
