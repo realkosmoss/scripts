@@ -7,3 +7,11 @@ end
 if game.PlaceId == 5902977746 then -- Ultimate Tower Defense
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/UltimateTowerDefense.lua')))()
 end
+if game.PlaceId == 6279039046 then -- Sled Simulator
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/SledSimulatorAutoFarm.lua')))()
+end
+if game.PlaceId == 11108419601 then -- slide into rdite lol
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5041.19482421875, -14121.47265625, -3000.751220703125)
+wait(1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5020.57421875, -14121.8662109375, -3012.02197265625)
+end
