@@ -15,3 +15,6 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5041.194
 wait(1)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5020.57421875, -14121.8662109375, -3012.02197265625)
 end
+if game.PlaceId == 7952502098 then -- impossible glass shit https://www.roblox.com/games/7952502098/Impossible-Glass-Bridge-Obby
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/ImpossibleGlassBridgeObby.lua')))()
+end
