@@ -14,7 +14,7 @@ Sections,
 And Other Elements (exc tabs)
 
 Getting Loadstring
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/realkosmoss/scripts/main/KavoUI.lua"))()
 Creating UI Library Window
 local Window = Library.CreateLib("TITLE", "DarkTheme")
 Themes:
