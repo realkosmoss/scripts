@@ -13,7 +13,7 @@ Section:NewButton("Correct Path ESP", "Correct Path ESP", function()
    end
    end
 end)
-Section:NewButton("Walk On Fake Blocks", "makes fake blocks collidable", function()
+Section:NewButton("Walk On Fake Blocks (Built In Esp)", "makes fake blocks collidable", function()
 for i,v in pairs(game:GetService("Workspace")["Glass Bridge"].GlassPane:GetDescendants()) do
    if v:IsA("BasePart") and v.CanCollide == false then
        v.CanCollide = true
