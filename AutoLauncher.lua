@@ -18,3 +18,6 @@ end
 if game.PlaceId == 7952502098 then -- impossible glass shit https://www.roblox.com/games/7952502098/Impossible-Glass-Bridge-Obby
     loadstring(game:HttpGet(('https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/ImpossibleGlassBridgeObby.lua')))()
 end
+if game.PlaceId == 1962086868 then -- tower off hell
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/TowerOfHell.lua')))()
+end
