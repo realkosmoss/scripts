@@ -66,9 +66,19 @@ MainSection:NewButton("Remove KillParts", "Removes KillParts", function()
         end
     end
 end)
+MainSection:NewToggle("AutoFarm", "AutoFarms Win", function(state)
+    if state then
+        _G.loops = true
+    else
+        _G.loops = false
+    end
+end)
 PlayerSection:NewSlider("WalkSpeed", "Changes WalkSpeed", 500, 0, function(WalkSpeed) -- 500 (MaxValue) | 0 (MinValue)
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = WalkSpeed
 end)
+
+
+
 PlayerSection:NewButton("Reset WalkSpeed", "Resets WalkSpeed", function()
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
 end)
@@ -91,3 +101,11 @@ CreditSection:NewButton("Youtube", "Copies My Youtube Link", function()
     Duration = 3;
 })
 end)
+_G.loops = true
+while wait(40) do
+if _G.loops == true then
+game.Players.LocalPlayer.Character:PivotTo(workspace.tower.finishes.Finish:GetPivot())
+wait(3)
+game.Players.LocalPlayer.Character.Humanoid.Jump = true
+end
+end
