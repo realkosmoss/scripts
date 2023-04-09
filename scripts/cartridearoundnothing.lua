@@ -75,35 +75,47 @@ car:SetPrimaryPartCFrame(CFrame.new(newPosition4))
 end)
 VehicleSection:NewLabel("Troll Features")
 VehicleSection:NewButton("Explode A Random Player", "Explodes A Random Player", function()
-    -- Get a list of all the carts in the workspace
+    -- Define the allow list of carts
+    local allowList = {
+        "Cart",
+        "RaceCart",
+        "CartXL",
+    }
+
+    -- Get a list of all the carts in the workspace that are on the allow list
     local carts = {}
     for _, cart in ipairs(game:GetService("Workspace").Carts:GetChildren()) do
-        if not (cart.Name == "AcceleratingCart0" or cart.Name == "AcceleratingCart1" or cart.Name == "AcceleratingCart2" or cart.Name == "PoliceCart") then
+        if table.find(allowList, cart.Name) then
             table.insert(carts, cart)
         end
     end
     
-    -- Pick a random cart from the list
-    local randomCart = carts[math.random(1, #carts)]
-    
-    -- Check for the car and get its primary part
-    local player = game:GetService("Players").LocalPlayer
-    local character = player.Character or player.CharacterAdded:Wait()
-    local humanoid = character:WaitForChild("Humanoid")
-    local seat = humanoid.SeatPart or humanoid.Seated
-    while not seat:IsDescendantOf(game:GetService("Workspace").Carts) do
-        wait()
+    -- Proceed only if there are carts on the allow list
+    if #carts > 0 then
+        -- Pick a random cart from the list
+        local randomCart = carts[math.random(1, #carts)]
+        
+        -- Check for the car and get its primary part
+        local player = game:GetService("Players").LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoid = character:WaitForChild("Humanoid")
+        local seat = humanoid.SeatPart or humanoid.Seated
+        while not seat:IsDescendantOf(game:GetService("Workspace").Carts) do
+            wait()
+        end
+        local car = seat:FindFirstAncestorOfClass("Model")
+        local primaryPart = car.PrimaryPart
+        
+        -- Set the primary part of the car to the position of the random cart
+        primaryPart.CFrame = randomCart.PrimaryPart.CFrame
+        wait(0.1)
+        game.Players.LocalPlayer.Character.Humanoid.Jump = true
+        wait(0.1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1.6481484174728394, 3.007530927658081, 38.16567611694336)
     end
-    local car = seat:FindFirstAncestorOfClass("Model")
-    local primaryPart = car.PrimaryPart
-    
-    -- Set the primary part of the car to the position of the random cart
-    primaryPart.CFrame = randomCart.PrimaryPart.CFrame
-    wait(0.1)
-    game.Players.LocalPlayer.Character.Humanoid.Jump = true
-    wait(0.1)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1.6481484174728394, 3.007530927658081, 38.16567611694336)
 end)
+
+
 
 
 
