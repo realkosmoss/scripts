@@ -1,5 +1,5 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/realkosmoss/scripts/main/KavoUI.lua"))()
-local Window = Library.CreateLib("Cart Ride Around Nothing", "Midnight")
+local Window = Library.CreateLib("Cart Ride Delivery Service", "Midnight")
 local MainTab = Window:NewTab("Main")
 local MainSection = MainTab:NewSection("Main")
 local PlayerTab = Window:NewTab("Player")
