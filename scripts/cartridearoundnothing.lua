@@ -126,7 +126,7 @@ VehicleSection:NewButton("Explode A Random Player", "Explodes A Random Player", 
         end
         local car = seat:FindFirstAncestorOfClass("Model")
         local primaryPart = car.PrimaryPart
-        
+        car.Name = "MYCARTRENAMED"
         -- Set the primary part of the car to the position of the random cart
         primaryPart.CFrame = randomCart.PrimaryPart.CFrame
         wait(0.1)
@@ -135,7 +135,9 @@ VehicleSection:NewButton("Explode A Random Player", "Explodes A Random Player", 
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1.6481484174728394, 3.007530927658081, 38.16567611694336)
     end
 end)
-
+VehicleSection:NewButton("Teleport To Cart Spawn", "Teleports To Cart Spawn", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(32.27077865600586, 3.0075292587280273, 33.57514953613281)
+end)
 
 
 
