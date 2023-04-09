@@ -11,7 +11,29 @@ local VehicleSection = VehicleTab:NewSection("Vehicle Teleports")
 MainSection:NewButton("Remove Police Track", "Removes The Police Spawn", function()
     game:GetService("Workspace").SpeedLimitTrack:Destroy()
 end)
-
+MainSection:NewButton("AutoWin (Dont Move)", "AutoWins", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-430.898926, 165.25, 101.645676, 1, 1.51719295e-08, -1.24212969e-14, -1.51719295e-08, 1, -1.14675147e-09, 1.24038988e-14, 1.14675147e-09, 1)
+wait(4.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-430.898529, 163.273926, 131.145554, 1, -2.85942061e-08, 2.0407586e-07, 2.85942079e-08, 1, -1.07927356e-08, -2.0407586e-07, 1.07927409e-08, 1)
+wait(10)
+game.Players.LocalPlayer.Character.Humanoid.Sit = true
+wait(33)
+game.Players.LocalPlayer.Character.Humanoid.Sit = false
+wait(2)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-236.98023986816406, 116.65403747558594, -179.72071838378906)
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+wait(1.3)
+game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
+wait(0.6)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-215.5883026123047, 117.1758041381836, -180.16421508789062)
+wait(10)
+game.Players.LocalPlayer.Character.Humanoid.Sit = true
+wait(35)
+game.Players.LocalPlayer.Character.Humanoid.Sit = false
+wait(0.5)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-166.04147338867188, 93.76612854003906, -174.07489013671875)
+end)
 
 -- vehicle section
 local primaryPart
@@ -38,7 +60,6 @@ VehicleSection:NewButton("Check Vehicle", "Checks If In A Vehicle And Primary Pa
         print("Not in a vehicle")
     end
 end)
-
 VehicleSection:NewButton("Teleport To Checkpoint 2", "Teleports To Checkpoint #2", function()
 -- Check for the car and get its primary part
 local player = game:GetService("Players").LocalPlayer
