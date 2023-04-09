@@ -96,6 +96,19 @@ car:SetPrimaryPartCFrame(CFrame.new(newPosition4))
 end)
 VehicleSection:NewLabel("Troll Features")
 VehicleSection:NewButton("Explode A Random Player", "Explodes A Random Player", function()
+    -- Check for the car and get its primary part
+    local player = game:GetService("Players").LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    local seat = humanoid.SeatPart or humanoid.Seated
+    while not seat:IsDescendantOf(game:GetService("Workspace").Carts) do
+        wait()
+    end
+    local car = seat:FindFirstAncestorOfClass("Model")
+    local primaryPart = car.PrimaryPart
+    -- Rename the car to MYCARTRENAMED
+    car.Name = "MYCARTRENAMED"
+    
     -- Define the allow list of carts
     local allowList = {
         "Cart",
@@ -110,23 +123,11 @@ VehicleSection:NewButton("Explode A Random Player", "Explodes A Random Player", 
             table.insert(carts, cart)
         end
     end
-    
     -- Proceed only if there are carts on the allow list
     if #carts > 0 then
         -- Pick a random cart from the list
         local randomCart = carts[math.random(1, #carts)]
         
-        -- Check for the car and get its primary part
-        local player = game:GetService("Players").LocalPlayer
-        local character = player.Character or player.CharacterAdded:Wait()
-        local humanoid = character:WaitForChild("Humanoid")
-        local seat = humanoid.SeatPart or humanoid.Seated
-        while not seat:IsDescendantOf(game:GetService("Workspace").Carts) do
-            wait()
-        end
-        local car = seat:FindFirstAncestorOfClass("Model")
-        local primaryPart = car.PrimaryPart
-        car.Name = "MYCARTRENAMED"
         -- Set the primary part of the car to the position of the random cart
         primaryPart.CFrame = randomCart.PrimaryPart.CFrame
         wait(0.1)
