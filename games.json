@@ -1,5 +1,7 @@
 {
    "10660791703":{"name":"Cart Ride Around Nothing","Script":"https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/cartridearoundnothing.lua","Working":true},
+   "11454403177":{"name":"Cart Ride Delivery Service","Script":"https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/CartRideDeliveryService.lua","Working":true},
+   "12514151964":{"name":"Cart Ride Delivery Service Galaxy","Script":"https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/CartRideDeliveryServiceGalaxy.lua","Working":true},
    "10914683361 ":{"name":"Busy Business", "Script":"https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/BusyBusinessNotDone", "Working":true},
    "10042772221":{"name":"Lumber Unsecure", "Script":"https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/lumberunsecure.lua", "Working":true},
    "5902977746":{"name":"Ultimate Tower Defense", "Script":"https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/UltimateTowerDefense.lua", "Working":true},
