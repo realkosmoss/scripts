@@ -1,5 +1,5 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/realkosmoss/scripts/main/KavoUI.lua"))()
-local Window = Library.CreateLib("Cart Ride Around Nothing Galaxy", "Midnight")
+local Window = Library.CreateLib("Cart Ride Around Nothing", "Midnight")
 local MainTab = Window:NewTab("Main")
 local MainSection = MainTab:NewSection("Main")
 local PlayerTab = Window:NewTab("Player")
@@ -75,8 +75,16 @@ VehicleSection:NewButton("Grab All Packages", "Grabs All Packages And Sells", fu
             wait(1)
             game:GetService("Workspace").Cars[vehicle.Name]:SetPrimaryPartCFrame(CFrame.new(-182.50755310058594, 434.4010314941406, -59.02915954589844))
             wait(1)
-            game:GetService("Workspace").Cars[vehicle.Name]:SetPrimaryPartCFrame(CFrame.new(401.4114990234375, 349.7209167480469, -329.93621826171875))
-        else
+            game:GetService("Workspace").Cars[vehicle.Name]:SetPrimaryPartCFrame(CFrame.new(428.80694580078125, 545.0353393554688, 275.73553466796875))
+            wait(1)
+            game:GetService("Workspace").Cars[vehicle.Name]:SetPrimaryPartCFrame(CFrame.new(348.2403564453125, 572.4010009765625, 97.70320129394531))
+            wait(1)
+            game:GetService("Workspace").Cars[vehicle.Name]:SetPrimaryPartCFrame(CFrame.new(394.9836730957031, 608.1956176757812, 189.3406524658203))
+            wait(1)
+            game:GetService("Workspace").Cars[vehicle.Name]:SetPrimaryPartCFrame(CFrame.new(386.62701416015625, 561.185791015625, 242.31382751464844))
+            wait(1)
+            game:GetService("Workspace").Cars[vehicle.Name]:SetPrimaryPartCFrame(CFrame.new(403.21795654296875, 345.3675537109375, -326.3551940917969))
+            else
             print("No primary part found in vehicle")
         end
     else
@@ -99,42 +107,6 @@ VehicleSection:NewButton("Drop Off", "Incase You Fall During Grab All Packages",
         if primaryPart then
             print("Primary part path:", primaryPart:GetFullName())
             game:GetService("Workspace").Cars[vehicle.Name]:SetPrimaryPartCFrame(CFrame.new(401.4114990234375, 349.7209167480469, -329.93621826171875))
-            print("Vehicle teleported to checkpoint")
-        else
-            print("No primary part found in vehicle")
-        end
-    else
-        print("Not in a vehicle")
-    end
-end)
-VehicleSection:NewButton("Win Teleport NOT WORKING", "Teleports To Win", function()
-    print("Checking for vehicle...")
-    local player = game:GetService("Players").LocalPlayer
-    local character = player.Character or player.CharacterAdded:Wait()
-    local humanoid = character:WaitForChild("Humanoid")
-    local seat = humanoid.SeatPart or humanoid.Seated
-    while not seat:IsDescendantOf(game:GetService("Workspace").Cars) do
-        wait()
-    end
-    local vehicle = seat:FindFirstAncestorOfClass("Model")
-    if vehicle then
-        print("Vehicle found:", vehicle.Name)
-        primaryPart = vehicle.PrimaryPart
-        if primaryPart then
-            print("Primary part path:", primaryPart:GetFullName())
-            game:GetService("Workspace").Cars[vehicle.Name]:SetPrimaryPartCFrame(CFrame.new())
-            wait(1)
-            game:GetService("Workspace").Cars[vehicle.Name]:SetPrimaryPartCFrame(CFrame.new(-95.6637954711914, 341.7261962890625, -726.3900756835938))
-            wait(1)
-            game:GetService("Workspace").Cars[vehicle.Name]:SetPrimaryPartCFrame(CFrame.new(126.94833374023438, 546.5359497070312, 329.653564453125))
-            wait(1)
-            game:GetService("Workspace").Cars[vehicle.Name]:SetPrimaryPartCFrame(CFrame.new(286.6631774902344, 604.7156372070312, 520.7548828125))
-            wait(1)
-            game:GetService("Workspace").Cars[vehicle.Name]:SetPrimaryPartCFrame(CFrame.new(398.83221435546875, 431.70538330078125, -308.1941223144531))
-            wait(1)
-            game:GetService("Workspace").Cars[vehicle.Name]:SetPrimaryPartCFrame(CFrame.new(915.7589721679688, 386.7443542480469, -284.8589172363281))
-            wait(1)
-            game:GetService("Workspace").Cars[vehicle.Name]:SetPrimaryPartCFrame(CFrame.new(947.85205078125, 388.3321533203125, -270.669677734375))
             print("Vehicle teleported to checkpoint")
         else
             print("No primary part found in vehicle")
