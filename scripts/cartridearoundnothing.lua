@@ -106,7 +106,6 @@ local newPosition1 = Vector3.new(-431.31268310546875, 164.8525390625, 104.766571
 local newRotation = CFrame.Angles(0, math.rad(90), 0)
 local newCFrame = CFrame.new(newPosition1) * newRotation
 car:SetPrimaryPartCFrame(CFrame.new(newPosition2) * newRotation)
-
 end)
 VehicleSection:NewLabel("Troll Features")
 VehicleSection:NewButton("Explode A Random Player", "Explodes A Random Player", function()
@@ -160,6 +159,47 @@ VehicleSection:NewButton("Teleport To Cart Spawn", "Teleports To Cart Spawn", fu
     wait(0.1)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(33.820213317871094, 6.945043087005615, 26.929059982299805)
 end)
+local function teleportCartToPosition(position)
+    local player = game:GetService("Players").LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    local seat = humanoid.SeatPart or humanoid.Seated
+    while not seat:IsDescendantOf(game:GetService("Workspace").Carts) do
+        wait()
+    end
+    local cart = seat:FindFirstAncestorOfClass("Model")
+    local primaryPart = cart.PrimaryPart
+    primaryPart.CFrame = CFrame.new(position)
+end
+local players = game:GetService("Players")
+local dropdownOptions = {}
+for _, player in ipairs(players:GetPlayers()) do
+    table.insert(dropdownOptions, player.Name)
+end
+VehicleSection:NewDropdown("Teleport to Player", "Select a player to teleport to (FOR VEHICLE)", dropdownOptions, function(selectedOption)
+    local selectedPlayer = players:FindFirstChild(selectedOption, true)
+
+    if selectedPlayer then
+        -- Get the position of the selected player's PrimaryPart
+        local position = selectedPlayer.Character.PrimaryPart.Position
+        teleportCartToPosition(position)
+    end
+end)
+
+-- Update dropdown menu when players join or leave the game
+players.PlayerAdded:Connect(function(player)
+    table.insert(dropdownOptions, player.Name)
+end)
+
+players.PlayerRemoving:Connect(function(player)
+    for i, playerName in ipairs(dropdownOptions) do
+        if playerName == player.Name then
+            table.remove(dropdownOptions, i)
+            break
+        end
+    end
+end)
+
 
 
 
