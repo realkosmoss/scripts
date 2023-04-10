@@ -75,21 +75,21 @@ VehicleSection:NewButton("Teleport To Crossing", "Makes The Mini Cars Go", funct
 	car:SetPrimaryPartCFrame(newPosition699)
 end)
 VehicleSection:NewButton("Teleport To Checkpoint 2", "Teleports To Checkpoint #2", function()
--- Check for the car and get its primary part
-local player = game:GetService("Players").LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoid = character:WaitForChild("Humanoid")
-local seat = humanoid.SeatPart or humanoid.Seated
-while not seat:IsDescendantOf(game:GetService("Workspace").Carts) do
-    wait()
-end
-local car = seat:FindFirstAncestorOfClass("Model")
-local primaryPart = car.PrimaryPart
-local newPosition1 = Vector3.new(-431.31268310546875, 164.8525390625, 104.76657104492188)
-car:SetPrimaryPartCFrame(CFrame.new(newPosition1))
-wait(2)
-local newPosition2 = Vector3.new(-431.3813171386719, 164.01992797851562, 130.28665161132812)
-car:SetPrimaryPartCFrame(CFrame.new(newPosition2))
+	-- Check for the car and get its primary part
+	local player = game:GetService("Players").LocalPlayer
+	local character = player.Character or player.CharacterAdded:Wait()
+	local humanoid = character:WaitForChild("Humanoid")
+	local seat = humanoid.SeatPart or humanoid.Seated
+	while not seat:IsDescendantOf(game:GetService("Workspace").Carts) do
+		wait()
+	end
+	local car = seat:FindFirstAncestorOfClass("Model")
+	local primaryPart = car.PrimaryPart
+	local newPosition6999 = CFrame.new(-430.9983825683594, 163.68325805664062, 103.4158935546875) * CFrame.Angles(0, math.rad(90), 0)
+	car:SetPrimaryPartCFrame(newPosition6999)
+	wait(2)
+	local newPosition69999 = CFrame.new(-431.0782775878906, 163.7175750732422, 131.6795196533203) * CFrame.Angles(0, math.rad(90), 0)
+    car:SetPrimaryPartCFrame(newPosition69999)
 end)
 VehicleSection:NewButton("Teleport To Checkpoint 3", "Teleports To Checkpoint #3", function()
 -- Check for the car and get its primary part
@@ -119,7 +119,6 @@ VehicleSection:NewButton("Explode A Random Player", "Explodes A Random Player", 
     end
     local car = seat:FindFirstAncestorOfClass("Model")
     local primaryPart = car.PrimaryPart
-    -- Rename the car to MYCARTRENAMED
     car.Name = "MYCARTRENAMED"
     
     -- Define the allow list of carts
@@ -160,6 +159,48 @@ VehicleSection:NewButton("Teleport To Cart Spawn", "Teleports To Cart Spawn", fu
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(33.820213317871094, 6.945043087005615, 26.929059982299805)
 end)
 
+
+-- specific player teleport
+local function teleportCartToPosition(position)
+    local player = game:GetService("Players").LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    local seat = humanoid.SeatPart or humanoid.Seated
+    while not seat:IsDescendantOf(game:GetService("Workspace").Carts) do
+        wait()
+    end
+    local cart = seat:FindFirstAncestorOfClass("Model")
+    local primaryPart = cart.PrimaryPart
+    primaryPart.CFrame = CFrame.new(position)
+end
+local players = game:GetService("Players")
+local dropdownOptions = {}
+for _, player in ipairs(players:GetPlayers()) do
+    table.insert(dropdownOptions, player.Name)
+end
+VehicleSection:NewDropdown("Teleport to Player", "Select a player to teleport to (FOR VEHICLE)", dropdownOptions, function(selectedOption)
+    local selectedPlayer = players:FindFirstChild(selectedOption, true)
+
+    if selectedPlayer then
+        -- Get the position of the selected player's PrimaryPart
+        local position = selectedPlayer.Character.PrimaryPart.Position
+        teleportCartToPosition(position)
+    end
+end)
+
+-- Update dropdown menu when players join or leave the game
+players.PlayerAdded:Connect(function(player)
+    table.insert(dropdownOptions, player.Name)
+end)
+
+players.PlayerRemoving:Connect(function(player)
+    for i, playerName in ipairs(dropdownOptions) do
+        if playerName == player.Name then
+            table.remove(dropdownOptions, i)
+            break
+        end
+    end
+end)
 
 
 
