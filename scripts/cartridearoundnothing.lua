@@ -60,6 +60,20 @@ VehicleSection:NewButton("Check Vehicle", "Checks If In A Vehicle And Primary Pa
         print("Not in a vehicle")
     end
 end)
+VehicleSection:NewButton("Teleport To Crossing", "Makes The Mini Cars Go", function()
+	-- Check for the car and get its primary part
+	local player = game:GetService("Players").LocalPlayer
+	local character = player.Character or player.CharacterAdded:Wait()
+	local humanoid = character:WaitForChild("Humanoid")
+	local seat = humanoid.SeatPart or humanoid.Seated
+	while not seat:IsDescendantOf(game:GetService("Workspace").Carts) do
+		wait()
+	end
+	local car = seat:FindFirstAncestorOfClass("Model")
+	local primaryPart = car.PrimaryPart
+	local newPosition699 = CFrame.new(342.9800109863281, 84.47254180908203, -140.9613494873047) * CFrame.Angles(0, math.rad(90), 0)
+	car:SetPrimaryPartCFrame(newPosition699)
+end)
 VehicleSection:NewButton("Teleport To Checkpoint 2", "Teleports To Checkpoint #2", function()
 -- Check for the car and get its primary part
 local player = game:GetService("Players").LocalPlayer
@@ -88,11 +102,11 @@ while not seat:IsDescendantOf(game:GetService("Workspace").Carts) do
 end
 local car = seat:FindFirstAncestorOfClass("Model")
 local primaryPart = car.PrimaryPart
-local newPosition3 = Vector3.new(-237.2541046142578, 117.6214828491211, -179.75625610351562)
-car:SetPrimaryPartCFrame(CFrame.new(newPosition3))
-wait(2)
-local newPosition4 = Vector3.new(-215.4148712158203, 115.43303680419922, -181.60116577148438)
-car:SetPrimaryPartCFrame(CFrame.new(newPosition4))
+local newPosition1 = Vector3.new(-431.31268310546875, 164.8525390625, 104.76657104492188)
+local newRotation = CFrame.Angles(0, math.rad(90), 0)
+local newCFrame = CFrame.new(newPosition1) * newRotation
+car:SetPrimaryPartCFrame(CFrame.new(newPosition2) * newRotation)
+
 end)
 VehicleSection:NewLabel("Troll Features")
 VehicleSection:NewButton("Explode A Random Player", "Explodes A Random Player", function()
@@ -137,8 +151,23 @@ VehicleSection:NewButton("Explode A Random Player", "Explodes A Random Player", 
     end
 end)
 VehicleSection:NewButton("Teleport To Cart Spawn", "Teleports To Cart Spawn", function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(32.27077865600586, 3.0075292587280273, 33.57514953613281)
+    local spawnPos = Vector3.new(32.27077865600586, 3.0075292587280273, 33.57514953613281)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(spawnPos)
+    wait(0.3)
+    keypress(0x45)
+    wait(0.5)
+    keyrelease(0x45)
+    wait(0.1)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(33.820213317871094, 6.945043087005615, 26.929059982299805)
 end)
+
+
+
+
+
+
+
+
 
 
 
