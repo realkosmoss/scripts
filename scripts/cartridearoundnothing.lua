@@ -134,20 +134,25 @@ VehicleSection:NewButton("Teleport To Checkpoint 2", "Teleports To Checkpoint #2
     car:SetPrimaryPartCFrame(newPosition69999)
 end)
 VehicleSection:NewButton("Teleport To Checkpoint 3", "Teleports To Checkpoint #3", function()
--- Check for the car and get its primary part
-local player = game:GetService("Players").LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoid = character:WaitForChild("Humanoid")
-local seat = humanoid.SeatPart or humanoid.Seated
-while not seat:IsDescendantOf(game:GetService("Workspace").Carts) do
-    wait()
-end
-local car = seat:FindFirstAncestorOfClass("Model")
-local primaryPart = car.PrimaryPart
-local newPosition1 = Vector3.new(-431.31268310546875, 164.8525390625, 104.76657104492188)
-local newRotation = CFrame.Angles(0, math.rad(90), 0)
-local newCFrame = CFrame.new(newPosition1) * newRotation
-car:SetPrimaryPartCFrame(CFrame.new(newPosition2) * newRotation)
+	-- Check for the car and get its primary part
+	local player = game:GetService("Players").LocalPlayer
+	local character = player.Character or player.CharacterAdded:Wait()
+	local humanoid = character:WaitForChild("Humanoid")
+	local seat = humanoid.SeatPart or humanoid.Seated
+	while not seat:IsDescendantOf(game:GetService("Workspace").Carts) do
+		wait()
+	end
+	local car = seat:FindFirstAncestorOfClass("Model")
+	local primaryPart = car.PrimaryPart
+	local newPosition6999 = CFrame.new(-238.6940155029297, 116.67147827148438, -180.28646850585938)
+	car:SetPrimaryPartCFrame(newPosition6999)
+	wait(0.5)
+	car:SetPrimaryPartCFrame(newPosition6999)
+	wait(0.5)
+	car:SetPrimaryPartCFrame(newPosition6999)
+	wait(1)
+	local newPosition69999 = CFrame.new(-211.93057250976562, 115.81063842773438, -181.1710968017578)
+    car:SetPrimaryPartCFrame(newPosition69999)
 end)
 VehicleSection:NewLabel("Troll Features")
 VehicleSection:NewButton("Explode A Random Player", "Explodes A Random Player", function()
