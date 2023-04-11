@@ -60,7 +60,37 @@ VehicleSection:NewButton("Check Vehicle", "Checks If In A Vehicle And Primary Pa
         print("Not in a vehicle")
     end
 end)
-VehicleSection:NewButton("Teleport To Crossing", "Makes The Mini Cars Go", function()
+local function teleportToAfterSpiral()
+	-- Check for the car and get its primary part
+	local player = game:GetService("Players").LocalPlayer
+	local character = player.Character or player.CharacterAdded:Wait()
+	local humanoid = character:WaitForChild("Humanoid")
+	local seat = humanoid.SeatPart or humanoid.Seated
+	while not seat:IsDescendantOf(game:GetService("Workspace").Carts) do
+		wait()
+	end
+	local car = seat:FindFirstAncestorOfClass("Model")
+	local primaryPart = car.PrimaryPart
+	local newPosition699 = CFrame.new(-37.824745178222656, 36.274837493896484, 396.5962829589844) * CFrame.Angles(0, math.rad(-90), 0)
+	car:SetPrimaryPartCFrame(newPosition699)
+end
+
+local function teleportToFunThing()
+	-- Check for the car and get its primary part
+	local player = game:GetService("Players").LocalPlayer
+	local character = player.Character or player.CharacterAdded:Wait()
+	local humanoid = character:WaitForChild("Humanoid")
+	local seat = humanoid.SeatPart or humanoid.Seated
+	while not seat:IsDescendantOf(game:GetService("Workspace").Carts) do
+		wait()
+	end
+	local car = seat:FindFirstAncestorOfClass("Model")
+	local primaryPart = car.PrimaryPart
+	local newPosition699 = CFrame.new(320.91229248046875, 40.21017837524414, 184.35092163085938) * CFrame.Angles(0, math.rad(90), 0)
+	car:SetPrimaryPartCFrame(newPosition699)
+end
+
+local function teleportToCrossing()
 	-- Check for the car and get its primary part
 	local player = game:GetService("Players").LocalPlayer
 	local character = player.Character or player.CharacterAdded:Wait()
@@ -73,7 +103,19 @@ VehicleSection:NewButton("Teleport To Crossing", "Makes The Mini Cars Go", funct
 	local primaryPart = car.PrimaryPart
 	local newPosition699 = CFrame.new(342.9800109863281, 84.47254180908203, -140.9613494873047) * CFrame.Angles(0, math.rad(90), 0)
 	car:SetPrimaryPartCFrame(newPosition699)
-end)
+end
+
+local function handleDropdownSelection(currentOption)
+	if currentOption == "Teleport To After Spiral" then
+		teleportToAfterSpiral()
+	elseif currentOption == "Teleport To Fun Thing" then
+		teleportToFunThing()
+	elseif currentOption == "Teleport To Crossing" then
+		teleportToCrossing()
+	end
+end
+
+VehicleSection:NewDropdown("Teleport To...", "Select a location", {"Teleport To After Spiral", "Teleport To Fun Thing", "Teleport To Crossing"}, handleDropdownSelection)
 VehicleSection:NewButton("Teleport To Checkpoint 2", "Teleports To Checkpoint #2", function()
 	-- Check for the car and get its primary part
 	local player = game:GetService("Players").LocalPlayer
