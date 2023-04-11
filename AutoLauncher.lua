@@ -1,4 +1,3 @@
--- Define the list of games and their associated loadstrings
 local games = {
    ["10660791703"] = {name = "Cart Ride Around Nothing", script = "https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/cartridearoundnothing.lua", working = true},
    ["11454403177"] = {name = "Cart Ride Delivery Service", script = "https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/CartRideDeliveryService.lua", working = true},
