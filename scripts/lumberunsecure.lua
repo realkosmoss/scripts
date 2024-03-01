@@ -57,7 +57,14 @@ Section:NewButton("Max Land", "Max Land For FREE!", function()
         makebase(CFrame.new(spos.X - 40, spos.Y, spos.Z - 80))    
 end)
 Section:NewButton("Inf Wires OP","Infinite amount of wire length", function()
-    loadstring(game:HttpGet(('https://kosmos-scripts.000webhostapp.com/priv/scripts/wire.lua')))()
+    // loadstring(game:HttpGet(('https://kosmos-scripts.000webhostapp.com/priv/scripts/wire.lua')))()
+    for i,v in next,game.ReplicatedStorage.Purchasables.WireObjects:GetChildren() do
+        if v:FindFirstChild("Type") then
+            if v.Type.Value == "Wire" then
+                v.Type.Parent.OtherInfo.MaxLength.Value = math.huge
+            end
+        end
+    end
 end)
 Section:NewButton("Mod Wood",("Mods Ya WoOoOoOoD"),function()
     loadstring(game:HttpGet(('https://kosmos-scripts.000webhostapp.com/priv/scripts/modwood.lua')))()
