@@ -397,8 +397,39 @@ TrollSection:NewButton("Explode Random V3", "Uses Seat To Explode MUCH BETTER", 
         seat.Position = newPos
     end
 end)
-
-
+TrollSection:NewButton("Explode ALL", "Trolling Mode", function() -- non retard version :troll:
+    local player = game:GetService("Players").LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    local seat = humanoid.SeatPart or humanoid.Seated
+    while not seat:IsDescendantOf(game:GetService("Workspace").Carts) do
+        wait()
+    end
+    local car = seat:FindFirstAncestorOfClass("Model")
+    local forward = car.VehicleSeat.CFrame.lookVector
+    local carts = game:GetService("Workspace").Carts:GetChildren()
+    for _, cart in ipairs(carts) do
+        if cart.PrimaryPart then
+            local newPosition = seat.Position - (forward * 0)
+            cart.PrimaryPart.Position = newPosition
+        else
+            local newPosition = seat.Position - (forward * 0)
+            local primaryPartFound = false
+            for _, descendant in ipairs(cart:GetDescendants()) do
+                if descendant:IsA("BasePart") then
+                    cart.PrimaryPart = descendant
+                    primaryPartFound = true
+                    break
+                end
+            end
+            if primaryPartFound then
+                cart:SetPrimaryPartCFrame(CFrame.new(newPosition))
+            else
+                warn("No fucking primarypart", cart.Name)
+            end
+        end
+    end     
+end)
 
 
 
@@ -406,12 +437,11 @@ TrollSection:NewDropdown("Teleport to Player", "Select a player to teleport to (
     local selectedPlayer = players:FindFirstChild(selectedOption, true)
 
     if selectedPlayer then
-        -- Get the position of the selected player's PrimaryPart
         local position = selectedPlayer.Character.PrimaryPart.Position
         teleportCartToPosition(position)
     end
 end)
--- Update dropdown menu when players join or leave the game
+
 players.PlayerAdded:Connect(function(player)
     table.insert(dropdownOptions, player.Name)
 end)
