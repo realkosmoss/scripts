@@ -469,6 +469,38 @@ TrollSection:NewButton("Explode ALL V2", "Trolling Mode", function()
     end
 end)
 
+TrollSection:NewButton("Explode ALL V3 Laggy + Buggy", "Trolling Mode", function() -- retard version :troll:
+    local player = game:GetService("Players").LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    local carts = game:GetService("Workspace").Carts:GetChildren()
+    player.Character:SetPrimaryPartCFrame(CFrame.new(423, 58, 162))
+    humanoid.Sit = false
+    humanoid.Sit = true
+    for _, cart in ipairs(carts) do
+        if not (cart.Name == "AcceleratingCart0" or cart.Name == "AcceleratingCart1" or cart.Name == "AcceleratingCart2" or cart.Name == "PoliceCart") then
+            if cart.PrimaryPart then
+                for _, cart2 in ipairs(carts) do
+                    if cart2.Name == "AcceleratingCart0" or cart2.Name == "AcceleratingCart1" or cart2.Name == "AcceleratingCart2" or cart2.Name == "PoliceCart" then
+                        local npccartpos = cart2.PrimaryPart and cart2.PrimaryPart.Position
+                        if npccartpos then
+                            for i = 0, 500 do
+                                cart.PrimaryPart.CFrame = CFrame.new(npccartpos)
+                                player.Character:SetPrimaryPartCFrame(CFrame.new(npccartpos))
+                            end
+                        else
+                            warn("No primary part position found for", cart2.Name)
+                        end
+                    end
+                end
+            else
+                warn("No primary part found for", cart.Name)
+            end
+        end
+    end
+end)
+
+
 TrollSection:NewButton("Explode Self", "Trolling Mode", function()
     local carts = game:GetService("Workspace").Carts:GetChildren()
     local player = game:GetService("Players").LocalPlayer
@@ -558,8 +590,8 @@ end)
 --// credits
 local CreditsTab = Window:NewTab("Credits")
 local CreditSection = CreditsTab:NewSection("Credits")
-CreditSection:NewLabel("Gui Made By Kosmos")
-CreditSection:NewLabel("Discord = kosmos#0795")
+CreditSection:NewLabel("Scwipt med by kosmos")
+CreditSection:NewLabel("Discord = chickennuggetman124")
 CreditSection:NewLabel("Library = KavoUI")
 CreditSection:NewButton("Youtube", "Copies My Youtube Link", function()
     setclipboard("https://www.youtube.com/channel/UC9PtiLSGAUn5L6f8OcKh24Q")
