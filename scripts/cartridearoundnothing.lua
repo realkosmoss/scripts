@@ -316,7 +316,7 @@ TrollSection:NewButton("Explode Random (Needs Cart)", "Uses Seat To Explode MUCH
         seat.Position = newPos
     end
 end)
-TrollSection:NewButton("Explode ALL", "Trolling Mode", function() -- non retard version :troll:
+TrollSection:NewButton("Explode ALL (Needs Cart)", "Trolling Mode", function() -- non retard version :troll:
     local player = game:GetService("Players").LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoid = character:WaitForChild("Humanoid")
