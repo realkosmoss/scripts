@@ -488,7 +488,36 @@ TrollSection:NewButton("Explode Self", "Trolling Mode", function()
         end
     end
 end)
-
+TrollSection:NewButton("Mess Up All Carts", "Trolling Mode", function()
+    local carts = game:GetService("Workspace").Carts:GetChildren()
+    local player = game:GetService("Players").LocalPlayer
+    local humanoid = player.Character and player.Character:FindFirstChildOfClass("Humanoid")
+    local humanoidRootPart = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+    
+    if humanoid and humanoidRootPart then
+        local oldPos = humanoidRootPart.Position
+        humanoid.Sit = false
+        humanoid.Sit = true
+        for _, cart in ipairs(carts) do
+            local randomIndex = math.random(1, #carts)
+            local randomCart = carts[randomIndex]
+            cart = randomCart
+            if not (cart.Name == "AcceleratingCart0" or cart.Name == "AcceleratingCart1" or cart.Name == "AcceleratingCart2" or cart.Name == "PoliceCart") then
+                if cart.PrimaryPart then
+                    local cartPos = cart.PrimaryPart.Position
+                    local direction = (cartPos - oldPos).unit
+                    humanoidRootPart.CFrame = CFrame.new(cartPos)
+                    for _ = 1, 30 do
+                        local randomAngle = math.random(-10, 10)
+                        local rotationMatrix = CFrame.Angles(math.rad(randomAngle), 0, 2)
+                        humanoidRootPart.CFrame = CFrame.new(cartPos) * rotationMatrix
+                    end
+                    humanoidRootPart.CFrame = CFrame.new(oldpos)
+                end
+            end
+        end
+    end
+end)
 -- player section
 PlayerSection:NewSlider("WalkSpeed", "Changes Walkspeed", 500, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
