@@ -1,5 +1,5 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/realkosmoss/KavoUI/main/KavoUI.lua"))()
-local Window = Library.CreateLib("Cart Ride Around Nothing", "Midnight")
+local Window = Library.CreateLib("Cart Ride Around Nothing V2", "Midnight")
 local MainTab = Window:NewTab("Main")
 local MainSection = MainTab:NewSection("Main")
 local PlayerTab = Window:NewTab("Player")
@@ -72,7 +72,7 @@ VehicleSection:NewButton("Check Vehicle", "Checks If In A Vehicle And Primary Pa
         print("Not in a vehicle")
     end
 end)
-VehicleSection:NewButton("No More Suspension", "Sets Suspension to 50,000", function()
+VehicleSection:NewButton("No More Suspension", "Sets Suspension to Math.Huge", function()
 local player = game:GetService("Players").LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
@@ -82,7 +82,7 @@ local myCart = seat and seat:IsDescendantOf(game:GetService("Workspace").Carts) 
 if myCart then
     for _, Suspension in ipairs(myCart:GetDescendants()) do
         if Suspension:IsA("SpringConstraint") then
-            Suspension.Stiffness = 50000
+            Suspension.Stiffness = Math.Huge
         end
     end
 else
@@ -291,86 +291,7 @@ TrollSection:NewButton("Teleport To Cart Spawn", "Teleports To Cart Spawn", func
     wait(0.1)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(33.820213317871094, 6.945043087005615, 26.929059982299805)
 end)
-TrollSection:NewButton("Explode Random V1", "Explodes A Random Player", function()
-    -- Check for the car and get its primary part
-    local player = game:GetService("Players").LocalPlayer
-    local character = player.Character or player.CharacterAdded:Wait()
-    local humanoid = character:WaitForChild("Humanoid")
-    local seat = humanoid.SeatPart or humanoid.Seated
-    while not seat:IsDescendantOf(game:GetService("Workspace").Carts) do
-        wait()
-    end
-    local car = seat:FindFirstAncestorOfClass("Model")
-    local primaryPart = car.PrimaryPart
-    car.Name = "MYCARTRENAMED"
-    
-    -- Define the allow list of carts
-    local allowList = {
-        "Cart",
-        "RaceCart",
-        "CartXL",
-    }
-
-    -- Get a list of all the carts in the workspace that are on the allow list
-    local carts = {}
-    for _, cart in ipairs(game:GetService("Workspace").Carts:GetChildren()) do
-        if table.find(allowList, cart.Name) then
-            table.insert(carts, cart)
-        end
-    end
-    -- Proceed only if there are carts on the allow list
-    if #carts > 0 then
-        -- Pick a random cart from the list
-        local randomCart = carts[math.random(1, #carts)]
-        
-        -- Set the primary part of the car to the position of the random cart
-        primaryPart.CFrame = randomCart.PrimaryPart.CFrame
-        wait(0.1)
-        game.Players.LocalPlayer.Character.Humanoid.Jump = true
-        wait(0.1)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1.6481484174728394, 3.007530927658081, 38.16567611694336)
-    end
-end)
-
-
--- specific player teleport
-local function teleportCartToPosition(position)
-    local player = game:GetService("Players").LocalPlayer
-    local character = player.Character or player.CharacterAdded:Wait()
-    local humanoid = character:WaitForChild("Humanoid")
-    local seat = humanoid.SeatPart or humanoid.Seated
-    while not seat:IsDescendantOf(game:GetService("Workspace").Carts) do
-        wait()
-    end
-    local cart = seat:FindFirstAncestorOfClass("Model")
-    local primaryPart = cart.PrimaryPart
-    primaryPart.CFrame = CFrame.new(position)
-end
-local players = game:GetService("Players")
-local dropdownOptions = {}
-for _, player in ipairs(players:GetPlayers()) do
-    table.insert(dropdownOptions, player.Name)
-end
-
-TrollSection:NewButton("Explode Random V2", "Uses Seat To Explode", function()
-    local player = game:GetService("Players").LocalPlayer
-    local character = player.Character or player.CharacterAdded:Wait()
-    local humanoid = character:WaitForChild("Humanoid")
-    local seat = humanoid.SeatPart or humanoid.Seated
-    while not seat:IsDescendantOf(game:GetService("Workspace").Carts) do
-        wait()
-    end
-    local car = seat:FindFirstAncestorOfClass("Model")
-    local forward = car.VehicleSeat.CFrame.lookVector
-    car.VehicleSeat.Position = car.VehicleSeat.Position + (forward * 0)
-    local carts = game:GetService("Workspace").Carts:GetChildren()
-    local targetCar = carts[math.random(1,#carts)]
-    if targetCar then
-        local newPos = targetCar.VehicleSeat.Position - (forward * 0)
-        seat.Position = newPos
-    end
-end)
-TrollSection:NewButton("Explode Random V3", "Uses Seat To Explode MUCH BETTER", function()
+TrollSection:NewButton("Explode Random (Needs Cart)", "Uses Seat To Explode MUCH BETTER", function()
     local player = game:GetService("Players").LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoid = character:WaitForChild("Humanoid")
@@ -443,6 +364,7 @@ TrollSection:NewButton("Explode ALL V2", "Trolling Mode", function()
             if oldpos and playerpos then
                 for _, cart in ipairs(carts) do
                     if cart.Name == "AcceleratingCart0" or cart.Name == "AcceleratingCart1" or cart.Name == "AcceleratingCart2" or cart.Name == "PoliceCart" then
+                        local BG = Instance.new("BodyGyro")
                         local cartPos = cart.PrimaryPart and cart.PrimaryPart.Position
                         if cartPos then
                             lp.Character:SetPrimaryPartCFrame(CFrame.new(cartPos))
@@ -454,9 +376,14 @@ TrollSection:NewButton("Explode ALL V2", "Trolling Mode", function()
                                 cart:SetPrimaryPartCFrame(CFrame.new(playerpos))
                                 cart:SetPrimaryPartCFrame(CFrame.new(playerpos))
                                 cart:SetPrimaryPartCFrame(CFrame.new(playerpos))
-                                cart:SetPrimaryPartCFrame(CFrame.new(playerpos))
-                                cart:SetPrimaryPartCFrame(CFrame.new(playerpos))
+                                cart.PrimaryPart.CFrame = CFrame.new(newPosition)
+                                BG.MaxTorque = Vector3.new(math.huge, math.huge, math.huge) 
+                                BG.CFrame = CFrame.new(cart2.PrimaryPart.CFrame.p) 
+                                BG.Parent = cart
                             end
+                            repeat 
+                                wait() 
+                            until cart.PrimaryPart.CFrame == CFrame.new(cart.PrimaryPart.CFrame.p) 
                         else
                             warn("No primarypart found for", cart.Name)
                         end
@@ -498,8 +425,26 @@ TrollSection:NewButton("Explode ALL V3", "Trolling Mode", function() -- retard v
                     if cart2.Name == "AcceleratingCart0" or cart2.Name == "AcceleratingCart1" or cart2.Name == "AcceleratingCart2" or cart2.Name == "PoliceCart" then
                         local npccartpos = cart2.PrimaryPart and cart2.PrimaryPart.Position
                         if npccartpos then
-                            for i = 0, 100 do
-                                cart2.PrimaryPart.CFrame = CFrame.new(randomCart.PrimaryPart.CFrame.Position)
+                            local newPosition = randomCart.PrimaryPart.CFrame.Position
+                            local BG = Instance.new("BodyGyro") 
+                            BG.Parent = nil
+                            for i = 0, 1000 do
+                                cart2.PrimaryPart.CFrame = CFrame.new(newPosition)
+                                BG.MaxTorque = Vector3.new(math.huge, math.huge, math.huge) 
+                                BG.CFrame = CFrame.new(cart2.PrimaryPart.CFrame.p) 
+                                BG.Parent = cart2
+                            end
+                            repeat 
+                                wait() 
+                            until cart2.PrimaryPart.CFrame == CFrame.new(cart2.PrimaryPart.CFrame.p) 
+                            BG.Parent = nil 
+                            if cart2 == nil then 
+                                return 
+                            end 
+                            for _, v in pairs(cart2:GetChildren()) do 
+                                if v:IsA("BodyGyro") then 
+                                    v:Destroy() 
+                                end 
                             end
                         else
                             warn("No primary part position found for", cart2.Name)
@@ -512,7 +457,6 @@ TrollSection:NewButton("Explode ALL V3", "Trolling Mode", function() -- retard v
         end
     end
 end)
-
 
 TrollSection:NewButton("Explode Self", "Trolling Mode", function()
     local carts = game:GetService("Workspace").Carts:GetChildren()
@@ -527,64 +471,23 @@ TrollSection:NewButton("Explode Self", "Trolling Mode", function()
                 local cartPos = cart.PrimaryPart and cart.PrimaryPart.Position
                 if cartPos then
                     player.Character:SetPrimaryPartCFrame(CFrame.new(cartPos))
-                    wait(0.1)
+                    local BG = Instance.new("BodyGyro")
                     for i = 0, 1000 do
-                        player.Character:SetPrimaryPartCFrame(CFrame.new(cartPos))
                         cart:SetPrimaryPartCFrame(CFrame.new(oldpos))
-                        cart:SetPrimaryPartCFrame(CFrame.new(oldpos))
-                        cart:SetPrimaryPartCFrame(CFrame.new(oldpos))
-                        cart:SetPrimaryPartCFrame(CFrame.new(oldpos))
-                        cart:SetPrimaryPartCFrame(CFrame.new(oldpos))
+                        cart2.PrimaryPart.CFrame = CFrame.new(newPosition)
+                        BG.MaxTorque = Vector3.new(math.huge, math.huge, math.huge)
+                        BG.CFrame = CFrame.new(cart2.PrimaryPart.CFrame.p)
+                        BG.Parent = cart2
                     end
-                    wait(0.1)
-                    player.Character:SetPrimaryPartCFrame(CFrame.new(cartPos))
-                    wait(0.1)
+                    player.Character:SetPrimaryPartCFrame(CFrame.new(oldpos))
+                    humanoid.Sit = false
                 else
                     warn("No fucking primarypart", cart.Name)
                 end
             end
         end
-        player.Character:SetPrimaryPartCFrame(CFrame.new(oldpos))
-        humanoid.Sit = false
-    else
-        warn("localpositino not fucking found+??? ginger.")
     end
 end)
-TrollSection:NewButton("Shootpart Teleport", "Trolling Mode", function()
-    local player = game:GetService("Players").LocalPlayer
-    local oldpos = player.Character and player.Character.PrimaryPart and player.Character.PrimaryPart.Position
-    local ShootParts = workspace:GetDescendants()
-    for i = 0, 10 do
-        for _, part in ipairs(ShootParts) do
-            if part.Name == "ShootPartC4" then
-                part:SetPrimaryPartCFrame(CFrame.new(oldpos))
-            end
-        end        
-    end
-end)
-
-TrollSection:NewDropdown("Teleport to Player", "Select a player to teleport to (FOR VEHICLE)", dropdownOptions, function(selectedOption)
-    local selectedPlayer = players:FindFirstChild(selectedOption, true)
-    if selectedPlayer then
-        local position = selectedPlayer.Character.PrimaryPart.Position
-        teleportCartToPosition(position)
-    end
-end)
-
-players.PlayerAdded:Connect(function(player)
-    table.insert(dropdownOptions, player.Name)
-end)
-
-players.PlayerRemoving:Connect(function(player)
-    for i, playerName in ipairs(dropdownOptions) do
-        if playerName == player.Name then
-            table.remove(dropdownOptions, i)
-            break
-        end
-    end
-end)
-
-
 
 -- player section
 PlayerSection:NewSlider("WalkSpeed", "Changes Walkspeed", 500, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
