@@ -507,7 +507,7 @@ TrollSection:NewButton("Mess Up All Carts", "Trolling Mode", function()
                     local cartPos = cart.PrimaryPart.Position
                     local direction = (cartPos - oldPos).unit
                     humanoidRootPart.CFrame = CFrame.new(cartPos)
-                    for _ = 1, 30 do
+                    for _ = 1, 5 do
                         local randomAngle = math.random(-10, 10)
                         local rotationMatrix = CFrame.Angles(math.rad(randomAngle), 0, 2)
                         humanoidRootPart.CFrame = CFrame.new(cartPos) * rotationMatrix
