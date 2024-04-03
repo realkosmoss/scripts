@@ -8,6 +8,8 @@ local games = {
    ["7952502098"] = {name = "Impossible Glass Bridge Obby", script = "https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/ImpossibleGlassBridgeObby.lua", working = true},
    ["1962086868"] = {name = "Tower Of Hell", script = "https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/TowerOfHell.lua", working = true},
    ["6279039046"] = {name = "Sled Simulator", script = "https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/SledSimulatorAutoFarm.lua", working = true},
+   ["1345139196"] = {name = "Treasure Hunt Simulator", script = "https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/TreasureHuntSimulator.lua", working = true},
+   
 }
 
 -- Check if the current game's PlaceId matches one of the specified game IDs
