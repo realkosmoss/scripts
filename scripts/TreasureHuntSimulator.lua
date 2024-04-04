@@ -160,6 +160,75 @@ Section:NewButton("loop farm chest", "yes", function()
         wait(0.5)
     until shouldstop == true
 end)
+Section:NewButton("loop rebirth farm", "yes", function()
+    local lp = game.Players.LocalPlayer
+    repeat
+        if shouldstop then
+            return
+        end
+        if lp then
+            local backpack = lp:FindFirstChild("Backpack")
+            for _, tool in ipairs(backpack:GetChildren()) do
+                toolname = tool.Name
+                tool.Parent = workspace:WaitForChild(lp.Name)
+            end
+            if not toolname then
+                tool = workspace:WaitForChild(lp.Name):FindFirstChildOfClass("Tool")
+                toolname = tool.Name
+            end
+        end
+        
+        local player = game:GetService("Players").LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+        local sandBlocks = game:GetService("Workspace").SandBlocks:GetChildren()
+        local closestBlock = nil
+        local closestDistance = math.huge
+        local oldclosestpos = nil
+        for _, block in ipairs(sandBlocks) do
+            local distance = (block.Position - humanoidRootPart.Position).magnitude
+            if distance < closestDistance and block:FindFirstChild("Chest") then
+                if allowonly1m and block.Reward.Value >= 1000000 then
+                    if not allowrainbowchest and block.Mat.Value == "Rainbow Chest" then
+                        continue
+                    end
+                    closestBlock = block
+                    closestDistance = distance
+                elseif not allowonly1m then
+                    if not allowrainbowchest and block.Mat.Value == "Rainbow Chest" then
+                        continue
+                    end
+                    closestBlock = block
+                    closestDistance = distance
+                end
+            end
+        end
+        
+        if closestBlock then
+            game.StarterGui:SetCore("SendNotification", {
+                Title = "Crate",
+                Text = "Reward: " .. tostring(closestBlock.Reward.Value) .. "!",
+                Duration = 3
+            })
+            while true do
+                humanoidRootPart.CFrame = CFrame.new(closestBlock.Position)
+                game:GetService("Players").LocalPlayer.Character:FindFirstChild(toolname).RemoteClick:FireServer(workspace:WaitForChild("SandBlocks"):WaitForChild(closestBlock.Name))
+                wait(0.1)
+                local model = closestBlock:FindFirstChild("Chest")
+                if not model or shouldstop then
+                    break
+                end
+            end
+        end
+        coins = lp.leaderstats.Coins.Value
+        rebirthcoins = lp.PlayerGui.Gui.Rebirth.Needed.Coins.Amount.Text:gsub(",", "")
+        if coins > tonumber(rebirthcoins) then
+            game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Rebirth"):FireServer()
+        else
+        end
+        wait(0.5)
+    until shouldstop == true
+end)
 Section:NewButton("stop farm", "yes", function()
     shouldstop = not shouldstop
     if shouldstop then
