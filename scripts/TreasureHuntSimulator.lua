@@ -70,13 +70,13 @@ Section:NewButton("farm chest", "yes", function()
                     continue
                 end
                 closestBlock = block
-                closestDistance = distance
+                --closestDistance = distance
             elseif not allowonly1m then
                 if not allowrainbowchest and block.Mat.Value == "Rainbow Chest" then
                     continue
                 end
                 closestBlock = block
-                closestDistance = distance
+                --closestDistance = distance
             end
         end
     end
@@ -109,15 +109,6 @@ Section:NewButton("Sell 25X", "yes", function()
     wait(0.25)
     humanoidRootPart.CFrame = CFrame.new(oldpos)
 end)
-Section:NewButton("Buy Open Tier6 Crate", "yes", function()
-    local args = {
-        [1] = game:GetService("ReplicatedStorage"):WaitForChild("Crates"):WaitForChild("Tier6Hat"),
-        [2] = "coolkosmos",
-        [3] = 1
-    }
-    game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("BuyCrate"):FireServer(unpack(args))
-    game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("SendOpenCrate"):FireServer(game:GetService("ReplicatedStorage"):WaitForChild("Crates"):WaitForChild("Tier6Hat"))    
-end)
 Section:NewButton("Rebirth", "Rebirth", function()
     local lp = game.Players.LocalPlayer
     coins = lp.leaderstats.Coins.Value
@@ -137,4 +128,34 @@ Section:NewButton("Rebirth", "Rebirth", function()
             Duration = 5
         })
     end
+end)
+
+local CrateTab = Window:NewTab("Crates")
+local CrateSection = CrateTab:NewSection("Crates")
+CrateSection:NewButton("Buy Open Tier4 Hat Crate", "yes", function()
+    local args = {
+        [1] = game:GetService("ReplicatedStorage"):WaitForChild("Crates"):WaitForChild("Tier4Hat"),
+        [2] = "coolkosmos",
+        [3] = 1
+    }
+    game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("BuyCrate"):FireServer(unpack(args))
+    game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("SendOpenCrate"):FireServer(game:GetService("ReplicatedStorage"):WaitForChild("Crates"):WaitForChild("Tier4Hat"))    
+end)
+CrateSection:NewButton("Buy Open Tier5 Hat Crate", "yes", function()
+    local args = {
+        [1] = game:GetService("ReplicatedStorage"):WaitForChild("Crates"):WaitForChild("Tier5Hat"),
+        [2] = "coolkosmos",
+        [3] = 1
+    }
+    game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("BuyCrate"):FireServer(unpack(args))
+    game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("SendOpenCrate"):FireServer(game:GetService("ReplicatedStorage"):WaitForChild("Crates"):WaitForChild("Tier5Hat"))    
+end)
+CrateSection:NewButton("Buy Open Tier6 Hat Crate", "yes", function()
+    local args = {
+        [1] = game:GetService("ReplicatedStorage"):WaitForChild("Crates"):WaitForChild("Tier6Hat"),
+        [2] = "coolkosmos",
+        [3] = 1
+    }
+    game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("BuyCrate"):FireServer(unpack(args))
+    game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("SendOpenCrate"):FireServer(game:GetService("ReplicatedStorage"):WaitForChild("Crates"):WaitForChild("Tier6Hat"))    
 end)
