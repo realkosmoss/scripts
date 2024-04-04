@@ -41,7 +41,7 @@ Section:NewButton("Only Allow 1M+ Chests", "yes", function()
         })
     end
 end)
-Section:NewButton("farm chest", "yes", function()
+Section:NewButton("farm 1 chest", "yes", function()
     local lp = game.Players.LocalPlayer
     if lp then
         local backpack = lp:FindFirstChild("Backpack")
@@ -54,7 +54,6 @@ Section:NewButton("farm chest", "yes", function()
             toolname = tool.Name
         end
     end
-    shouldstop = false
     local player = game:GetService("Players").LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -70,13 +69,13 @@ Section:NewButton("farm chest", "yes", function()
                     continue
                 end
                 closestBlock = block
-                --closestDistance = distance
+                closestDistance = distance
             elseif not allowonly1m then
                 if not allowrainbowchest and block.Mat.Value == "Rainbow Chest" then
                     continue
                 end
                 closestBlock = block
-                --closestDistance = distance
+                closestDistance = distance
             end
         end
     end
@@ -85,7 +84,7 @@ Section:NewButton("farm chest", "yes", function()
         game.StarterGui:SetCore("SendNotification", {
             Title = "Crate",
             Text = "Reward: " .. tostring(closestBlock.Reward.Value) .. "!",
-            Duration = 3
+            Duration = 2
         })
         while true do
             humanoidRootPart.CFrame = CFrame.new(closestBlock.Position)
@@ -98,8 +97,84 @@ Section:NewButton("farm chest", "yes", function()
         end
     end
 end)
+Section:NewButton("loop farm chest", "yes", function()
+    local lp = game.Players.LocalPlayer
+    repeat
+        if shouldstop then
+            return
+        end
+        if lp then
+            local backpack = lp:FindFirstChild("Backpack")
+            for _, tool in ipairs(backpack:GetChildren()) do
+                toolname = tool.Name
+                tool.Parent = workspace:WaitForChild(lp.Name)
+            end
+            if not toolname then
+                tool = workspace:WaitForChild(lp.Name):FindFirstChildOfClass("Tool")
+                toolname = tool.Name
+            end
+        end
+        
+        local player = game:GetService("Players").LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+        local sandBlocks = game:GetService("Workspace").SandBlocks:GetChildren()
+        local closestBlock = nil
+        local closestDistance = math.huge
+        local oldclosestpos = nil
+        for _, block in ipairs(sandBlocks) do
+            local distance = (block.Position - humanoidRootPart.Position).magnitude
+            if distance < closestDistance and block:FindFirstChild("Chest") then
+                if allowonly1m and block.Reward.Value >= 1000000 then
+                    if not allowrainbowchest and block.Mat.Value == "Rainbow Chest" then
+                        continue
+                    end
+                    closestBlock = block
+                    closestDistance = distance
+                elseif not allowonly1m then
+                    if not allowrainbowchest and block.Mat.Value == "Rainbow Chest" then
+                        continue
+                    end
+                    closestBlock = block
+                    closestDistance = distance
+                end
+            end
+        end
+        
+        if closestBlock then
+            game.StarterGui:SetCore("SendNotification", {
+                Title = "Crate",
+                Text = "Reward: " .. tostring(closestBlock.Reward.Value) .. "!",
+                Duration = 3
+            })
+            while true do
+                humanoidRootPart.CFrame = CFrame.new(closestBlock.Position)
+                game:GetService("Players").LocalPlayer.Character:FindFirstChild(toolname).RemoteClick:FireServer(workspace:WaitForChild("SandBlocks"):WaitForChild(closestBlock.Name))
+                wait(0.1)
+                local model = closestBlock:FindFirstChild("Chest")
+                if not model or shouldstop then
+                    break
+                end
+            end
+        end
+        wait(0.5)
+    until shouldstop == true
+end)
 Section:NewButton("stop farm", "yes", function()
-    shouldstop = true
+    shouldstop = not shouldstop
+    if shouldstop then
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "Stop Farm",
+            Text = "Stopped Farm",
+            Duration = 2
+        })
+    else
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "Stop Farm",
+            Text = "Allowed Farm",
+            Duration = 2
+        })
+    end
 end)
 Section:NewButton("Sell 25X", "yes", function()
     local character = game:GetService("Players").LocalPlayer.Character or player.CharacterAdded:Wait()
