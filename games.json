@@ -8,4 +8,5 @@
    "7952502098":{"name":"Impossible Glass Bridge Obby", "Script":"https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/ImpossibleGlassBridgeObby.lua", "Working":true},
    "1962086868":{"name":"Tower Of Hell", "Script":"https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/TowerOfHell.lua", "Working":true}
    "6279039046":{"name":"Sled Simulator", "Script":"https://raw.githubusercontent.com/realkosmoss/scripts/main/scripts/SledSimulatorAutoFarm.lua", "Working":true}
+   "1345139196":{"name":"Treasure Hunt Simulator", "Script":"https://raw.githubusercontent.com/realkosmoss/scripts/refs/heads/main/scripts/TreasureHuntSimulator.lua", "Working":true}
 }
