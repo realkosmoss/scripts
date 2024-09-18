@@ -235,7 +235,7 @@ Section:NewButton("Sell 25X", "yes", function()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
     oldpos = humanoidRootPart.CFrame.Position
     humanoidRootPart.CFrame = CFrame.new(-243, 10, -281)
-    wait(0.25)
+    wait(0.5)
     humanoidRootPart.CFrame = CFrame.new(oldpos)
 end)
 
@@ -245,7 +245,7 @@ local CrateSection = CrateTab:NewSection("Crates")
 CrateSection:NewButton("Buy Open Tier4 Hat Crate", "yes", function()
     local args = {
         [1] = game:GetService("ReplicatedStorage"):WaitForChild("Crates"):WaitForChild("Tier4Hat"),
-        [2] = "coolkosmos",
+        [2] = game.Players.LocalPlayer.Name,
         [3] = 1
     }
     game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("BuyCrate"):FireServer(unpack(args))
@@ -254,7 +254,7 @@ end)
 CrateSection:NewButton("Buy Open Tier5 Hat Crate", "yes", function()
     local args = {
         [1] = game:GetService("ReplicatedStorage"):WaitForChild("Crates"):WaitForChild("Tier5Hat"),
-        [2] = "coolkosmos",
+        [2] = game.Players.LocalPlayer.Name,
         [3] = 1
     }
     game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("BuyCrate"):FireServer(unpack(args))
@@ -263,7 +263,7 @@ end)
 CrateSection:NewButton("Buy Open Tier6 Hat Crate", "yes", function()
     local args = {
         [1] = game:GetService("ReplicatedStorage"):WaitForChild("Crates"):WaitForChild("Tier6Hat"),
-        [2] = "coolkosmos",
+        [2] = game.Players.LocalPlayer.Name,
         [3] = 1
     }
     game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("BuyCrate"):FireServer(unpack(args))
