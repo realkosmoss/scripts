@@ -616,12 +616,6 @@ TrollSection:NewButton("Mess Up All Carts", "Trolling Mode", function()
                 child:Destroy()
             end
         end
-    
-        local bodyVelocity = Instance.new("BodyVelocity")
-        bodyVelocity.MaxForce = Vector3.new(50000, 50000, 50000)
-        bodyVelocity.Velocity = Vector3.new(50000, 50000, 50000)
-        bodyVelocity.Parent = humanoidRootPart
-    
         local validCarts = {}
         for _, cart in pairs(carts) do
             if not cart.Name:match("Police") and not cart.Name:match("Accelerating") then
@@ -632,6 +626,11 @@ TrollSection:NewButton("Mess Up All Carts", "Trolling Mode", function()
         if #validCarts > 0 then
             local randomCart = validCarts[math.random(1, #validCarts)]
     
+            local bodyVelocity = Instance.new("BodyVelocity")
+            bodyVelocity.MaxForce = Vector3.new(50000, 50000, 50000)
+            bodyVelocity.Velocity = Vector3.new(50000, 50000, 50000)
+            bodyVelocity.Parent = humanoidRootPart
+
             for _, seat in pairs(randomCart:GetDescendants()) do
                 if seat:IsA("Seat") or seat:IsA("VehicleSeat") then
                     seat:Destroy()
